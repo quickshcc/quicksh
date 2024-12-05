@@ -15,6 +15,10 @@ TRANSFERS_PATH = Path("./data/shared/")
 MAX_TRANSFER_SIZE = 150 * 1024 * 1024   # 150mb
 
 
+if not TRANSFERS_PATH.exists():
+    TRANSFERS_PATH.touch()
+
+
 def get_max_data_size_b() -> int | float:
     return float(os.getenv("MAX_DATA_SIZE_MB")) * 1024 * 1024 or 1024 ** 3
 

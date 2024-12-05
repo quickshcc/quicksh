@@ -13,6 +13,11 @@ init(autoreset=True)
 LOGS_PATH = Path("./logs/")
 TRACEBACK_LOG_PATH = LOGS_PATH + "traceback.log"
 
+if not LOGS_PATH.exists():
+    LOGS_PATH.touch()
+if not TRACEBACK_LOG_PATH.exists():
+    TRACEBACK_LOG_PATH.touch()
+
 
 def get_time() -> str:
     """ Returns current date and time in format: DD/MM/YYYY HH:MM:SS """
