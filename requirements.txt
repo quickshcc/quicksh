@@ -1,0 +1,6 @@
+colorama
+fastapi
+python-dotenv
+ujson
+uvicorn
+python-multipart
