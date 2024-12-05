@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <base href="../">
+    
+    <link href="./web/static/styles.css" rel="stylesheet">
+    <script defer src="./web/static/scripts/animations.js"></script>
+    <script defer src="./web/static/scripts/dialogs.js"></script>
+    <script defer src="./web/static/scripts/popups.js"></script>
+    <script defer src="./web/static/scripts/scene.js"></script>
+    <script defer src="./web/static/scripts/qr-creator.js"></script>
+    <script defer src="./web/static/scripts/cache.js"></script>
+    <script defer src="./web/static/scripts/api.js"></script>
+    <script src="https://kit.fontawesome.com/e526ea242b.js" crossorigin="anonymous"></script>
+
+    <link rel="icon" type="image/x-icon" href="./web/static/logo.ico">
+    <link rel="stylesheet" type="text/css" href="./web/static/butterup/butterup.min.css" />
+    <script src="./web/static/butterup/butterup.min.js"></script>
+
+    <title>quicksh</title>
+
+</head>
+<body id="dropZone" style="background-image: url('./web/static/backgrounds/noise.png');">
+    <div class="background-blur">
+        <img src="./web/static/backgrounds/blur.png">
+    </div>
+
+    <header>
+        <div class="logoPart">
+            <img src="./web/static/logo.png">
+            quicksh
+        </div>
+
+        <div class="navPart">
+            <a href="#">Get CLI</a>
+            <div class="navSep"></div>
+            <a href="#">Open Source</a>
+            <div class="navSep"></div>
+            <a href="#">Contact</a>
+        </div>
+    </header>
+
+    <div class="header-section">
+        <img src="./web/static/quicksh.png">
+        <p id="intro-text">Quickly share files with ease.<br class="mobile-br"> Without account, for free.</p>
+    </div>
+
+    <div class="cards-section">
+        <div class="cards-container">
+
+            <!-- RECEIVE -->
+            <div class="card" id="c-recv">
+                <div class="c-header">
+                    <img src="./web/static/icons/receive.png" height="28px">
+                    <p class="c-title">Receive</p>
+                </div>
+                <div class="c-sep"></div>
+                <div class="c-body" id="recv-body">
+                    <div class="codeInputContainer">
+                        <input type="text" class="digitInput" id="1" maxlength="1">
+                        <input type="text" class="digitInput" id="2" maxlength="1">
+                        <input type="text" class="digitInput" id="3" maxlength="1">
+                        <input type="text" class="digitInput" id="4" maxlength="1">
+                        <input type="text" class="digitInput" id="5" maxlength="1">
+                    </div>
+
+                    <button class="primary-card-button" id="recv-get" onclick="receiveFile(getCode())">
+                        Download
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+    
+            <!-- TRANSFER -->
+            <div class="card" id="c-tran">
+                <div class="c-header">
+                    <img src="./web/static/icons/upload.png" height="28px">
+                    <p class="c-title">Transfer</p>
+                    <i class="fa-solid fa-clock-rotate-left" onclick="flipHistoryWindow()"></i>
+                </div>
+                <div class="c-sep"></div>
+                <div class="c-body" id="transfer-body">
+                    <div class="transfer-file-container" onclick="uploadFile();">
+                        <input id="fileDialog" type="file" style="display: none;">
+
+                        <div class="switch-view" id="addFileView">
+                            <img class="uploadFileIcon" src="./web/static/icons/plus.png">
+                        </div>
+                        
+                        <div class="switch-view" used="0" id="selectedFileView">
+                            <div class="fileInfo">
+                                <img class="uploadFileIcon" src="./web/static/icons/file.png">
+                                <span id="fileName"></span> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="duration-input-group">
+                        <div class="radio-inputs">
+                            <label class="radio">
+                                <input type="radio" name="durationRadio" onchange="selectedDuration = 0">
+                                <span class="name">
+                                    15m
+                                </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" checked id="defaultDuradionRadio" name="durationRadio" onchange="selectedDuration = 1">
+                                <span class="name">
+                                    1h
+                                </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="durationRadio" onchange="selectedDuration = 2">
+                                <span class="name">
+                                    12h
+                                </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="durationRadio" onchange="selectedDuration = 3">
+                                <span class="name">
+                                    1d
+                                </span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="durationRadio" onchange="selectedDuration = 4">
+                                <span class="name">
+                                    3d
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="primary-card-button" id="tran-upload" onclick="sendTransferFile()">
+                        Upload
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="c-body" id="transfer-success-body" style="display: none;">
+                    <div class="data-container">
+                        <h1 id="file-code" onclick="copyResultCode()"></h1>
+                        <div class="fileDataGroup">
+                            Name
+                            <span class="fileData" id="file-name"></span>
+                        </div>
+                        <div class="fileDataGroup">
+                            Expiration <span class="fileData" id="file-exp"></span>
+                        </div>
+                    </div>
+                    <div class="share-section">
+                        <p id="share-url">
+                            <span id="share-url-base" style="user-select: text;"></span>
+                            <span id="share-url-code" style="user-select: text;"></span>
+                        </p>
+                        <button class="share-btn" id="copy-share-url" onclick="copyResultUrl()">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                        <button class="share-btn" id="show-url-qr" onclick="openQrWindow()">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </button>
+                    </div>
+                    <button class="primary-card-button" id="next-tran" onclick="window.location.reload();">
+                        Next
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <div class="qr-code-container" fold="1" style="display: none;">
+                        <button class="back-from-win" onclick="hideQrWindow()">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Back
+                        </button>
+                        <div id="qr-code"></div>
+                    </div>
+                </div>
+
+                <div class="uploads-history-container" fold="1" style="display: none;">
+                    <button class="back-from-win" onclick="hideHistoryWindow()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <div class="history-header">
+                        <span>CODE</span>
+                        <span>FILE</span>
+                        <span>EXPIRE</span>
+                    </div>
+                    <div id="history-rows"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("share-url-base").innerText = window.location.host + "/";
+        document.getElementById("defaultDuradionRadio").checked = true;
+
+        window.addEventListener("load", () => {
+            document.getElementsByClassName("qr-code-container")[0].style.display = "flex";
+            document.getElementsByClassName("uploads-history-container")[0].style.display = "flex";
+            checkPathForCode();
+            validateCachedCodes();
+        })
+
+        let selectedFile = null;
+        let selectedDuration = 1;
+    </script>
+
+</body>
+</html>
+
+
