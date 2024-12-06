@@ -110,7 +110,7 @@ class SharedFile:
         if not is_space_available(size):
             return errors.SERVER_SIZE_ERROR
         
-        if lifetime not in TransferLifetime:
+        if lifetime not in range(0, 5):
             return errors.INVALID_LIFETIME
         
         code = generate_transfer_code()
