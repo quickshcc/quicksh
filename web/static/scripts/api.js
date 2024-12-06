@@ -1,4 +1,4 @@
-const API = "/api/";
+const API = "https://quicksh.cc/api/";
 
 
 function sendTransferFile() {
