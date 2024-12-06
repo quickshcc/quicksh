@@ -669,11 +669,13 @@ h1 {
 
 @media only screen and (max-width: 750px) {
     .cards-container {
-        width: 350px;
+        width: min-content;
+        justify-content: center;
     }
 
     .card {
         height: auto;
+        width: 270px;
     }
 
     #recv-body {
