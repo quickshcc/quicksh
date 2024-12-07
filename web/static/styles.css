@@ -410,7 +410,7 @@ display: flex;
 }
 
 .qr-code-container[fold="1"] {
-    transform: translateY(120%);
+    transform: translateY(150%);
 }
 
 .back-from-win {
@@ -453,7 +453,7 @@ display: flex;
 }
 
 .uploads-history-container[fold="1"] {
-    transform: translateY(120%);
+    transform: translateY(150%);
 }
 
 #history-rows {

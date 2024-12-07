@@ -95,45 +95,34 @@ async def delete(code: int, request: Request) -> JSONResponse:
     }, 200)
     
     
-@api.post("/api/validate-set")
+@api.get("/api/owned-codes")
 @ApiLimiter.gate
-async def validate_set(request: Request, codes_set: str = Form(...)) -> JSONResponse:
-    """ 
-    codes_set: 12345,123456...
-    response: {     (contains only valid codes, skips invalid)
+async def fetch_owned_codes(request: Request) -> JSONResponse:
+    """
+    response: {
         code1: {
             'file': str,
             'expire': str
-        }
+        },
+        code2: {...}
     }
     """
+    codes = {}
+    ip_addr = transfers.hash_ip(request.client.host)
     
-    codes = codes_set.split(",")
-    response = {}
-    
-    for code in codes:
-        if not code.isnumeric():
-            continue
-        
-        code = int(code)
-        
-        try:
-            share = transfers.transfers_db.get(str(code))
-            if share.date_expire > timestamp.generate_timestamp():
-                response[code] = {
-                    "file": share.name,
-                    "expire": timestamp.convert_to_readable(share.date_expire)
-                }
+    for model in transfers.transfers_db.get_all_models():
+        if model.owner_ip == ip_addr:
+            codes[model.code] = {
+                "file": model.name,
+                "expire": timestamp.convert_to_readable(model.date_expire)
+            }
             
-        except transfers.database.KeyNotFound:
-            continue
-        
     return JSONResponse({
         "status": True,
-        "response": response
+        "response": codes
     }, 200)
 
-
+    
 if __name__ == "__main__":
     env_status = dotenv.load_dotenv(".env")
     if not env_status:

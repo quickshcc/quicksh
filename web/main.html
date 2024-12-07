@@ -13,7 +13,6 @@
     <script defer src="./web/static/scripts/popups.js"></script>
     <script defer src="./web/static/scripts/scene.js"></script>
     <script defer src="./web/static/scripts/qr-creator.js"></script>
-    <script defer src="./web/static/scripts/cache.js"></script>
     <script defer src="./web/static/scripts/api.js"></script>
     <script src="https://kit.fontawesome.com/e526ea242b.js" crossorigin="anonymous"></script>
 
@@ -201,7 +200,7 @@
             document.getElementsByClassName("qr-code-container")[0].style.display = "flex";
             document.getElementsByClassName("uploads-history-container")[0].style.display = "flex";
             checkPathForCode();
-            validateCachedCodes();
+            fetchOwnedCodes();
         })
 
         let selectedFile = null;
