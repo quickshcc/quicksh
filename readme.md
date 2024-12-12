@@ -15,7 +15,7 @@
 ### ⬆️ Transfering
 
 <div align="center">
-    <img src="./assets/mock/transfer.png" width="400" alt="Transfer" />
+    <img src="./assets/mock/transfer.png" width="200" alt="Transfer" />
 </div>
 
 1. Press the big "+" button on the transfer card and choose file.
@@ -27,7 +27,31 @@
 ### 🔗 Sharing
 
 <div align="center">
-    <img src="./assets/mock/share.png" width="400" alt="Share" />
+    <img src="./assets/mock/share.png" width="200" alt="Share" />
 </div>
+
+After uploading a file, card will display the transfer information including:
+  - Transfer code (📋 click to copy)
+  - File's name
+  - Expiration date
+  - Share URL (with QR code)
+
+### 📜 History
+
+<div align="center">
+    <img src="./assets/mock/history.png" width="200" alt="History" />
+</div>
+
+You can access the transfers history by pressing **button in the top-right corner**. You will see the popup presented in the image above.
+
+Here, You can see each transfer's `code`, `name` and `expire date`. You can also **🗑️ manually remove** the transfer before expiration.
+
+### 📦 Receiving
+
+<div align="center">
+    <img src="./assets/mock/receive.png" width="200" alt="Receive" />
+</div>
+
+If You have the full transfer URL (like `quicksh.cc/00000`) or a QR code, simply open the site and code will automatically be pasted into the input field. Otherwise, manually type all the digits into fields. Press the **download** button. If transfer's code is correct and the file is not expired, downloading will start.
 
 
