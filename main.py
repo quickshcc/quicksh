@@ -61,7 +61,7 @@ async def transfer(request: Request, file: UploadFile = File(...), expire: int =
         "status": True,
         "code": result.code,
         "expire": timestamp.convert_to_readable(result.date_expire)
-    }, 200)  
+    }, 200)
 
 
 
