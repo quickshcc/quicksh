@@ -25,6 +25,7 @@
 3. Press the "upload" button to transfer file to the server.
 
 <br>
+
 ### 🔗 Sharing
 
 <div align="center">
@@ -38,6 +39,7 @@ After uploading a file, card will display the transfer information including:
   - Share URL (with QR code)
 
 <br>
+
 ### 📜 History
 
 <div align="center">
@@ -49,6 +51,7 @@ You can access the transfers history by pressing **button in the top-right corne
 Here, You can see each transfer's `code`, `name` and `expire date`. You can also **🗑️ manually remove** the transfer before expiration.
 
 <br>
+
 ### 📦 Receiving
 
 <div align="center">
