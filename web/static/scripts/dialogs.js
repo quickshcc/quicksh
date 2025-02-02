@@ -21,7 +21,7 @@ function getSize(file) {
 function setSelectedFile(file) {
     if (file === undefined) { return; }
     
-    const MAX_FILE_SIZE = 150 * 1024 * 1024;  // 150mb
+    const MAX_FILE_SIZE = 500 * 1024 * 1024;  // 500mb
     if (file.size > MAX_FILE_SIZE) {
         return showTransStatus("Maximum file size is: 150mb!")
     }
