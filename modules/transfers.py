@@ -12,7 +12,7 @@ import os
 
 
 TRANSFERS_PATH = Path("./data/shared/")
-MAX_TRANSFER_SIZE = 150 * 1024 * 1024   # 150mb
+MAX_TRANSFER_SIZE = 500 * 1024 * 1024   # 500mb
 
 
 if not TRANSFERS_PATH.exists():
